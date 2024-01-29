@@ -20,6 +20,8 @@ project board.
 
 ## Community
 
+
+
 Please see the following resources for more information:
   * Website: [nephio.org](https://nephio.org)
   * Wiki: [wiki.nephio.org](https://wiki.nephio.org)
