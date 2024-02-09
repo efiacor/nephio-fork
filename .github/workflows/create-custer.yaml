@@ -14,9 +14,16 @@ jobs:
   create-cluster:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Checkout test-infra
         uses: actions/checkout@v4
         with:
           repository: nephio-project/test-infra
           path: './test-infra'
+          ref: main
+      - name: Call sandbox install
+        run:  bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
 
