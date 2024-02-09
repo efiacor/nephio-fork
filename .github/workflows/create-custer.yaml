@@ -25,5 +25,5 @@ jobs:
           path: './test-infra'
           ref: main
       - name: Call sandbox install
-        run:  bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
+        run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
 
