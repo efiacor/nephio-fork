@@ -21,11 +21,9 @@ jobs:
       - name: Checkout test-infra
         uses: actions/checkout@v4
         with:
-          repository: nephio-project/test-infra
+          repository: efiacor/test-infra-custom
           path: './test-infra'
           ref: main
       - name: Call sandbox install
         run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
-      - name: Run kubectl
-        run: kubectl get po -A
 
