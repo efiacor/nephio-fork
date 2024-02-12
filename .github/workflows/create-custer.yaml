@@ -33,7 +33,7 @@ jobs:
           sudo cp /tmp/kubeconfig /home/ubuntu/.kube/config
           chmod 644 /home/ubuntu/.kube/config
       - name: Call kubectl
-        run: kubectl get po -A
+        run: kubectl get po -A --kubeconfig /home/ubuntu/.kube/config
       # - name: Call 001 script
       #   run: bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
       #   env:
