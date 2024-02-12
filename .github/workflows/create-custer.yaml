@@ -9,10 +9,6 @@ on:
       - main
 
   pull_request:
-  
-env:
-  E2EDIR: ${GITHUB_WORKSPACE}/test-infra/e2e
-  LIBDIR: ${GITHUB_WORKSPACE}/test-infra/e2e/lib
           
 jobs:
   create-cluster:
