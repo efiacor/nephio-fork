@@ -11,8 +11,8 @@ on:
   pull_request:
   
 env:
-  E2EDIR: ${{ env.E2EDIR }}
-  LIBDIR: ${{ env.LIBDIR }}
+  E2EDIR: ${GITHUB_WORKSPACE}/test-infra/e2e
+  LIBDIR: ${GITHUB_WORKSPACE}/test-infra/e2e/lib
           
 jobs:
   create-cluster:
@@ -31,5 +31,5 @@ jobs:
       # - name: Call sandbox install
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: Call 001 script
-        run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/tests/free5gc/001.sh NEPHIO_USER=ubuntu
+        run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/tests/free5gc/001.sh NEPHIO_USER=ubuntu E2EDIR=$E2EDIR
 
