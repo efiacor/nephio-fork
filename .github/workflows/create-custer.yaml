@@ -24,19 +24,17 @@ jobs:
           repository: efiacor/test-infra-custom
           path: './test-infra-custom'
           ref: main
-      # - name: Call sandbox install
-      #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh NEPHIO_USER=ubuntu
-      - name: copy file
+      - name: Call sandbox install
+        run: sudo bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh NEPHIO_USER=ubuntu
+      - name: Copy kubeconfig
         run: |
           mkdir -p /home/ubuntu/.kube
           chmod -R 755  /home/ubuntu/.kube
           sudo cp /tmp/kubeconfig /home/ubuntu/.kube/config
           chmod 644 /home/ubuntu/.kube/config
-      - name: Call kubectl
-        run: kubectl get po -A --kubeconfig /home/ubuntu/.kube/config
-      # - name: Call 001 script
-      #   run: bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
-      #   env:
-      #     E2EDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-custom/e2e
-      #     LIBDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-custom/e2e/lib
+      - name: Call 001 script
+        run: bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
+        env:
+          E2EDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-custom/e2e
+          LIBDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-custom/e2e/lib
 
