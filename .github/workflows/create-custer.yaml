@@ -29,6 +29,6 @@ jobs:
       - name: Call 001 script
         run: bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
         env:
-          E2EDIR: ${GITHUB_WORKSPACE}/test-infra-test/e2e
-          LIBDIR: ${GITHUB_WORKSPACE}/test-infra-test/e2e/lib
+          E2EDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-test/e2e
+          LIBDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-test/e2e/lib
 
