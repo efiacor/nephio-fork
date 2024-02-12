@@ -26,14 +26,14 @@ jobs:
           ref: main
       # - name: Call sandbox install
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/provision/init.sh NEPHIO_USER=ubuntu
-      - name: Echo
-        run: ls -larth /tmp
       - name: copy file
         run: |
           mkdir ${GITHUB_WORKSPACE}/.kube
           chmod -R 755  ${GITHUB_WORKSPACE}/.kube
           sudo cp /tmp/kubeconfig ${GITHUB_WORKSPACE}/.kube/config
           chmod 644 ${GITHUB_WORKSPACE}/.kube/config
+      - name: Check kubconfig
+        run: ls -larth ${GITHUB_WORKSPACE}/.kube/
       - name: Call 001 script
         run: bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
         env:
