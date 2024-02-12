@@ -28,7 +28,7 @@ jobs:
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: copy file
         run: |
-          mkdir /home/ubuntu/.kube
+          mkdir -p /home/ubuntu/.kube
           chmod -R 755  /home/ubuntu/.kube
           sudo cp /tmp/kubeconfig /home/ubuntu/.kube/config
           chmod 644 /home/ubuntu/.kube/config
