@@ -11,8 +11,8 @@ on:
   pull_request:
   
 env:
-  E2EDIR: ${{ vars.E2EDIR }}
-  LIBDIR: ${{ vars.LIBDIR }}
+  E2EDIR: ${{ env.E2EDIR }}
+  LIBDIR: ${{ env.LIBDIR }}
           
 jobs:
   create-cluster:
