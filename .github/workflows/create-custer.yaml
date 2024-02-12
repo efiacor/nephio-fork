@@ -27,7 +27,7 @@ jobs:
       # - name: Call sandbox install
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: Call 001 script
-        run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
+        run: bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
         env:
           E2EDIR: ${{ vars.E2EDIR }}
           LIBDIR: ${{ vars.LIBDIR }}
