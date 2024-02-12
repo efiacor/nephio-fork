@@ -34,6 +34,10 @@ jobs:
           chmod 644 ${GITHUB_WORKSPACE}/.kube/config
       - name: Check kubconfig
         run: ls -larth ${GITHUB_WORKSPACE}/.kube/
+      - name: Check ls HOME
+        run: ls -larth $HOME
+      - name: Check HOME var
+        run: echo $HOME
       - name: Call 001 script
         run: bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
         env:
