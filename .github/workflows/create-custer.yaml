@@ -22,32 +22,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: efiacor/test-infra-custom
-          path: './test-infra-2'
+          path: './test-infra-custom'
           ref: main
       # - name: Call sandbox install
-      #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-2/e2e/provision/init.sh NEPHIO_USER=ubuntu
+      #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: copy file
         run: |
           mkdir /home/ubuntu/.kube
           chmod -R 755  /home/ubuntu/.kube
           sudo cp /tmp/kubeconfig /home/ubuntu/.kube/config
           chmod 644 /home/ubuntu/.kube/config
-      # - name: Check kubconfig
-      #   run: ls -larth ${HOME}/.kube/
-      # - name: Check ls HOME
-      #   run: ls -larth ${HOME}
-      # - name: Check HOME var
-      #   run: cat $HOME/.kube/config
-      - name: Check home/ubuntu
-        run: ls -la /home/ubuntu
-      # - name: Export kind kubeconfig
-      #   run: kind get kubeconfig --internal >/home/ubuntu/.kube/config
-      - name: Check HOME var
-        run: cat $HOME/.kube/config
-        
-      - name: Call 001 script
-        run: bash ${GITHUB_WORKSPACE}/test-infra-2/e2e/tests/free5gc/001.sh
-        env:
-          E2EDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-2/e2e
-          LIBDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-2/e2e/lib
+      - name: Call kubectl
+        run: kubectl get po -A
+      # - name: Call 001 script
+      #   run: bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
+      #   env:
+      #     E2EDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-custom/e2e
+      #     LIBDIR: /runner-tmp/nephio-fork/nephio-fork/test-infra-custom/e2e/lib
 
