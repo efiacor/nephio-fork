@@ -42,6 +42,7 @@ jobs:
         run: kind get kubeconfig --internal >$HOME/.kube/config
       - name: Check HOME var
         run: cat $HOME/.kube/config
+        
       - name: Call 001 script
         run: bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
         env:
