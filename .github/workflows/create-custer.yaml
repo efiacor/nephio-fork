@@ -41,7 +41,7 @@ jobs:
       - name: Check home/ubuntu
         run: ls -la /home/ubuntu
       - name: Export kind kubeconfig
-        run: kind get kubeconfig --internal >$HOME/.kube/config
+        run: kind get kubeconfig --internal >/home/ubuntu/.kube/config
       - name: Check HOME var
         run: cat $HOME/.kube/config
         
