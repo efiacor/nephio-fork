@@ -28,12 +28,12 @@ jobs:
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: copy file
         run: |
-          mkdir ${GITHUB_WORKSPACE}/.kube
-          chmod -R 755  ${GITHUB_WORKSPACE}/.kube
-          sudo cp /tmp/kubeconfig ${GITHUB_WORKSPACE}/.kube/config
-          chmod 644 ${GITHUB_WORKSPACE}/.kube/config
+          mkdir ${HOME}/.kube
+          chmod -R 755  ${HOME}/.kube
+          sudo cp /tmp/kubeconfig ${HOME}/.kube/config
+          chmod 644 ${HOME}/.kube/config
       - name: Check kubconfig
-        run: ls -larth ${GITHUB_WORKSPACE}/.kube/
+        run: ls -larth ${HOME}/.kube/
       - name: Check ls HOME
         run: ls -larth ${HOME}
       - name: Check HOME var
