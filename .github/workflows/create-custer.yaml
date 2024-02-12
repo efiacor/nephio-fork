@@ -22,13 +22,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: efiacor/test-infra-custom
-          path: './test-infra'
+          path: './test-infra-test'
           ref: main
       # - name: Call sandbox install
-      #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
+      #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: Call 001 script
-        run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/tests/free5gc/001.sh NEPHIO_USER=ubuntu E2EDIR=/runner-tmp/nephio-fork/nephio-fork/test-infra/e2e
-        env:
-          E2EDIR: ${GITHUB_WORKSPACE}/test-infra/e2e
-          LIBDIR: ${GITHUB_WORKSPACE}/test-infra/e2e/lib
+        run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh NEPHIO_USER=ubuntu
+        # env:
+        #   E2EDIR: ${GITHUB_WORKSPACE}/test-infra/e2e
+        #   LIBDIR: ${GITHUB_WORKSPACE}/test-infra/e2e/lib
 
