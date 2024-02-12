@@ -26,16 +26,20 @@ jobs:
           ref: main
       # - name: Call sandbox install
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/provision/init.sh NEPHIO_USER=ubuntu
-      - name: copy file
-        run: |
-          mkdir ${HOME}/.kube
-          chmod -R 755  ${HOME}/.kube
-          sudo cp /tmp/kubeconfig ${HOME}/.kube/config
-          chmod 644 ${HOME}/.kube/config
-      - name: Check kubconfig
-        run: ls -larth ${HOME}/.kube/
-      - name: Check ls HOME
-        run: ls -larth ${HOME}
+      # - name: copy file
+      #   run: |
+      #     mkdir ${HOME}/.kube
+      #     chmod -R 755  ${HOME}/.kube
+      #     sudo cp /tmp/kubeconfig ${HOME}/.kube/config
+      #     chmod 644 ${HOME}/.kube/config
+      # - name: Check kubconfig
+      #   run: ls -larth ${HOME}/.kube/
+      # - name: Check ls HOME
+      #   run: ls -larth ${HOME}
+      # - name: Check HOME var
+      #   run: cat $HOME/.kube/config
+      - name: Export kind kubeconfig
+        run: kind get kubeconfig --internal >$HOME/.kube/config
       - name: Check HOME var
         run: cat $HOME/.kube/config
       - name: Call 001 script
