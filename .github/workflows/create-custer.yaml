@@ -28,6 +28,11 @@ jobs:
       #   run: sudo bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: Echo
         run: ls -larth $HOME
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "/tmp/kubeconfig"
+          target: "$HOME/.kube/config"
       - name: Call 001 script
         run: bash ${GITHUB_WORKSPACE}/test-infra-test/e2e/tests/free5gc/001.sh
         env:
