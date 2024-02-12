@@ -28,3 +28,6 @@ jobs:
         run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/provision/init.sh NEPHIO_USER=ubuntu
       - name: Call 001 script
         run: sudo bash ${GITHUB_WORKSPACE}/test-infra/e2e/tests/free5gc/001.sh NEPHIO_USER=ubuntu
+        env:
+          E2EDIR: ${{ vars.E2EDIR }}
+          LIBDIR: ${{ vars.LIBDIR }}
