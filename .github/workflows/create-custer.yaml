@@ -23,7 +23,6 @@ jobs:
           ref: main
       # - name: Show dirs
       #   run: ls -larth
-      
       - name: Call sandbox install
         run: echo "pass" | sudo -S -u ubuntu ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh
         env:
