@@ -24,7 +24,7 @@ jobs:
       # - name: Show dirs
       #   run: ls -larth
       - name: Call sandbox install
-        run: echo "ubuntu" | sudo -S -u ubuntu ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh
+        run: echo "pass" | sudo -S -u ubuntu ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh
         env:
           NEPHIO_USER: ubuntu
       - name: Copy kubeconfig
