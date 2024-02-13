@@ -27,7 +27,8 @@ jobs:
       # - name: Show dirs
       #   run: ls -larth
       - name: Call sandbox install
-        run: bash runuser -u "ubuntu" ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh
+        run: |
+          runuser -u "ubuntu" ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision/init.sh
       - name: Copy kubeconfig
         run: |
           mkdir -p /home/ubuntu/.kube
