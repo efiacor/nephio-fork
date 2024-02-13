@@ -30,6 +30,6 @@ jobs:
       - name: Call 001 script
         run: bash ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
         env:
-          E2EDIR: /home/ghr/_work/nephio-fork/nephio-fork/nephio-fork/test-infra-custom/e2e
+          E2EDIR: /home/ghr/_work/nephio-fork/nephio-fork/test-infra-custom/e2e
           LIBDIR: /home/ghr/_work/nephio-fork/nephio-fork/test-infra-custom/e2e/lib
 
