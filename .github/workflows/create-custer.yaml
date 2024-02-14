@@ -30,7 +30,6 @@ jobs:
           repository: efiacor/test-infra-custom
           path: './test-infra-custom'
           ref: main
-          
       # - name: Call sandbox install
       #   run: |
       #     cd ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision
