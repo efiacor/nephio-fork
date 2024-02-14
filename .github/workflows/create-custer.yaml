@@ -20,9 +20,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: "../..//"
+          context: ${GITHUB_WORKSPACE}/operators/nephio-controller-manager
           push: false
-          file: ${GITHUB_WORKSPACE}/operators/nephio-controller-manager/Dockerfile
+          file: ./Dockerfile
           tags: docker.io/nephio/nephio-operator:latest
       - name: Checkout test-infra
         uses: actions/checkout@v4
