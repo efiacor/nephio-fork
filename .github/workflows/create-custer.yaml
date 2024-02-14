@@ -18,7 +18,7 @@ jobs:
       - name: Build nephio-operator image
         run: |
           cd ${GITHUB_WORKSPACE}/operators/nephio-controller-manager
-          make docker-build
+          docker buildx build --load --tag  docker.io/nephio/nephio-operator:latest -f ./Dockerfile "../..//"
           docker images
       - name: Checkout test-infra
         uses: actions/checkout@v4
