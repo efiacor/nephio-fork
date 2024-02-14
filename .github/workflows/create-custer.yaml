@@ -15,11 +15,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-      - name: Build nephio-operator image
-        run: |
-          cd ${GITHUB_WORKSPACE}/operators/nephio-controller-manager
-          docker buildx build --load --tag  docker.io/nephio/nephio-operator:latest -f ./Dockerfile "../..//"
-          docker images
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: "../..//"
+          push: false
+          file: ${GITHUB_WORKSPACE}/operators/nephio-controller-manager/Dockerfile
+          tags: docker.io/nephio/nephio-operator:latest
       - name: Checkout test-infra
         uses: actions/checkout@v4
         with:
