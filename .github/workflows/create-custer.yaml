@@ -27,7 +27,7 @@ jobs:
           sudo -u ubuntu ./install_sandbox.sh
         env:
           NEPHIO_USER: ubuntu
-      - name: Build nephio image
+      - name: Build latest nephio image
         run: |
           cd ${GITHUB_WORKSPACE}/operators/nephio-controller-manager/
           docker buildx build --load --tag  docker.io/nephio/nephio-operator:latest -f ./Dockerfile "../..//"
@@ -35,6 +35,7 @@ jobs:
         run: |
           kind load docker-image docker.io/nephio/nephio-operator:latest
           kubectl set image deployment/nephio-controller -n nephio-system controller=docker.io/nephio/nephio-operator:latest --kubeconfig /home/ubuntu/.kube/config
+          kubectl get deployment/nephio-controller -o jsonpath="{..image}" -n nephio-system --kubeconfig /home/ubuntu/.kube/config
       - name: Call 001 script
         run: |
           sudo -u ubuntu E2EDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e LIBDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e/lib ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
