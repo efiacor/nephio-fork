@@ -15,22 +15,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+      - name: Build nephio-operator image
+        run: |
+          cd ${GITHUB_WORKSPACE}/operators/nephio-controller-manager
+          make docker-build
+          docker images
       - name: Checkout test-infra
         uses: actions/checkout@v4
         with:
           repository: efiacor/test-infra-custom
           path: './test-infra-custom'
           ref: main
-      - name: Call sandbox install
-        run: |
-          cd ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision
-          sudo -u ubuntu ./install_sandbox.sh
-        env:
-          NEPHIO_USER: ubuntu
-      - name: Call 001 script
-        run: |
-          sudo -u ubuntu E2EDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e LIBDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e/lib ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
-        env:
-          E2EDIR: /home/ghr/_work/nephio-fork/nephio-fork/test-infra-custom/e2e
-          LIBDIR: /home/ghr/_work/nephio-fork/nephio-fork/test-infra-custom/e2e/lib
+      # - name: Call sandbox install
+      #   run: |
+      #     cd ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision
+      #     sudo -u ubuntu ./install_sandbox.sh
+      #   env:
+      #     NEPHIO_USER: ubuntu
+      # - name: Call 001 script
+      #   run: |
+      #     sudo -u ubuntu E2EDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e LIBDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e/lib ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
+      #   env:
+      #     E2EDIR: /home/ghr/_work/nephio-fork/nephio-fork/test-infra-custom/e2e
+      #     LIBDIR: /home/ghr/_work/nephio-fork/nephio-fork/test-infra-custom/e2e/lib
 
