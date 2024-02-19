@@ -39,3 +39,4 @@ jobs:
       - name: Call 001 script
         run: |
           sudo -u ubuntu E2EDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e LIBDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e/lib ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
+
