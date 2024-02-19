@@ -1,0 +1,43 @@
+name: Nephio Op E2E Testing
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+  
+jobs:
+  create-cluster:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Checkout test-infra
+        uses: actions/checkout@v4
+        with:
+          repository: efiacor/test-infra-custom
+          path: './test-infra-custom'
+          ref: main
+      - name: Call sandbox install
+        run: |
+          cd ${GITHUB_WORKSPACE}/test-infra-custom/e2e/provision
+          sudo -u ubuntu ./install_sandbox.sh
+        env:
+          NEPHIO_USER: ubuntu
+      - name: Build latest nephio image
+        run: |
+          cd ${GITHUB_WORKSPACE}/operators/nephio-controller-manager/
+          docker buildx build --load --tag  docker.io/nephio/nephio-operator:latest -f ./Dockerfile "../..//"
+      - name: Load custom nephio image
+        run: |
+          kind load docker-image docker.io/nephio/nephio-operator:latest
+          kubectl set image deployment/nephio-controller -n nephio-system controller=docker.io/nephio/nephio-operator:latest --kubeconfig /home/ubuntu/.kube/config
+          kubectl get deployment/nephio-controller -o jsonpath="{..image}" -n nephio-system --kubeconfig /home/ubuntu/.kube/config
+      - name: Call 001 script
+        run: |
+          sudo -u ubuntu E2EDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e LIBDIR=${GITHUB_WORKSPACE}/test-infra-custom/e2e/lib ${GITHUB_WORKSPACE}/test-infra-custom/e2e/tests/free5gc/001.sh
+
